@@ -14,84 +14,85 @@ BukkitのMinecraft 1.9版の開発がスタートしました。
 [現在の最新版(1.8.8)との差分](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/compare/diff?targetBranch=refs%2Fheads%2Fmaster&sourceBranch=refs%2Fheads%2F1.9&targetRepoId=11) |
 [Minecraft1.9の変更点](http://minecraft-ja.gamepedia.com/1.9)
 
-### 削除 [Painting*Event](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/41a3f82c17d75416a4d75802188b170e8bf113fb)
+## 削除されたAPI
 
-2012年10月に`Hanging*Event`に置き換えられた後、非推奨になっていた`Painting*Event`が削除されました。
-`Painting*Event`を使っていたプラグインは動作しなくなります。
+以下のAPIはBukkit1.9で削除されます。
+その為、そのAPIを使っていたプラグインはBukkit1.9以降のサーバーでは動作しなくなります。
 
-### 削除 [ContainerBlock](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/b2aefa586cd89d2ed985223f54354714a814dc5e)
+### [Painting*Event](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/41a3f82c17d75416a4d75802188b170e8bf113fb)
 
-2012年3月に`InventoryHolder`に置き換えられた後、非推奨になっていた`ContainerBlock`が削除されました。
-`ContainerBlock`を使っていたプラグインは動作しなくなります。
+2012年10月に、`Hanging*Event`に置き換えられ、非推奨になっていました。
 
-### 変更 [必ずUTF-8を使う](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/5b60dc50cf3f47939be988edf358572db6cea6d4)
+* PaintingBreakByEntityEvent
+* PaintingBreakEvent
+* PaintingEvent
+* PaintingPlaceEvent
 
-`config.yml`などのコンフィグファイルを、全てUTF-8でロード、セーブするようになったようです。
-自分もあまり理解出来ていないのですが、
-今までWindows環境ではデフォルトで`Shift_JIS`でロード、セーブされていたコンフィグファイルなどが、
-今後は必ず`UTF-8`でロード、セーブされるようになると理解しています。
+### [ContainerBlock](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/b2aefa586cd89d2ed985223f54354714a814dc5e)
 
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">Bukkit1.9のconfig.ymlのUTF-8の話、軽くソースコード見ただけだからわからないんだけど、既にShift_JISでconfig.ymlとか書いてると動かなくなる気がするんだけど</p>&mdash; misterT (@misterT2525) <a href="https://twitter.com/misterT2525/status/700905520324956160">2016, 2月 20</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+2012年3月に、`InventoryHolder`に置き換えられ、非推奨になっていました。
 
-### 非推奨 [ボート](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/2360673e9a96f6a7e8d7414c8914b578ed5d1a89)
+## 非推奨になったAPI
 
-1.9でボードの仕様が大きく変化したため、今までのボートのAPIが非推奨になりました。
+以下のAPIはBukkit1.9で非推奨になります。
+そのAPIを使っていたプラグインはBukkit1.9のサーバーでも動作しますが、不安定になる可能性があります。
+また、将来的に削除される可能性がある為、開発者は代わりになるAPIへの以降をするべきです。
 
-### 変更 [MainHandとOffHand](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/b25ddcf477fb80bbe3888571a7a4b926625b13b9)
+### [Boat](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/2360673e9a96f6a7e8d7414c8914b578ed5d1a89)
 
-1.9で、オフハンドが使えるようになったのでAPIが更新されました。
-今までの`getItemInHand()`と`setItemInHand(ItemStack)`は非推奨になり、
-MainHandとOffHand用に別々のメソッドとして追加されました。
-また、`EquipmentSlot`には`OFF_HAND`が追加されました。
+Minecraft1.9でボートの仕様が変わったため、今までのAPIは非推奨になります。
 
-### 追加 [ボスバー](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/c464ecaa563fe7f768df74420e4ace1be6c054a6)
+### [ItemInHand](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/b25ddcf477fb80bbe3888571a7a4b926625b13b9)
 
-1.9でボスバーの仕様が変更され、APIが追加されました。
+Minecraft1.9でOffHandが追加されたため、`ItemInHand`は非推奨になります。
+Bukkit1.9では、`ItemInHand`は`ItemInMainHand`と同じ動作になりますが、
+将来的に削除される可能性がある為、`ItemInMainHand`と`ItemInOffHand`に移行するべきです。
+
+## 変更されたAPI
+
+### [UTF-8](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/5b60dc50cf3f47939be988edf358572db6cea6d4)
+
+今までは、環境で設定されたCharsetを使っていたコンフィグファイルなどが、必ずUTF-8を使うように変更されるようです。
+確認出来ていませんが、今までShift_JIS環境で動かしていたサーバーで、
+コンフィグファイルにマルチバイト文字が含まれている場合にUTF-8に変更しないと文字化け等が発生する可能性があります。
+また、今までjarファイル内のコンフィグファイルにマルチバイト文字を含んでいた場合に、
+環境で設定されたCharsetに変換してpluginsフォルダに保存するようにしていたプラグインなどにも影響する可能性があります。
+
+### [Tree](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/53330e8c39afd318532f477d6e0e07add4ab8ace)
+
+[バグ(SPIGOT-1389)](https://hub.spigotmc.org/jira/browse/SPIGOT-1389)の修正のようです。
+
+## 追加されたAPI
+
+### [MainHand OffHand](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/b25ddcf477fb80bbe3888571a7a4b926625b13b9)
+
+Minecraft1.9でOffHandが追加されたため、追加されます。
+
+### [BossBar](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/c464ecaa563fe7f768df74420e4ace1be6c054a6)
+
+Minecraft1.9でボスバーの仕様が変更されたため、追加されます。
 以下の様にボスバーを作成することが出来るようです。
 
 ```
 Bukkit.createBossBar("Title", BarColor.PINK, BarStyle.SEGMENTED_12, BarFlag.PLAY_BOSS_MUSIC)
 ```
 
-### 追加 [Glowing](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/298c819f609cb68e9b4a8df56209446b3512c771)
+### [Glowing](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/298c819f609cb68e9b4a8df56209446b3512c771)
 
-1.9で壁越しでもエンティティが光って見える、`Glowing`という状態が実装されたため、APIに追加されました。
-特定のプレイヤーからのみ`Glowing`に見える、みたいなことはBukkitAPIでは実現出来なさそうです。
+Minecraft1.9で`Glowing`というEntityの状態が追加されたため、追加されます。
 
-### 追加 [Particle](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/cc17cf177617cb57951a405725cba59b5244acec)
+### [Particle](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/cc17cf177617cb57951a405725cba59b5244acec)
 
-パーティクルのAPIが追加されました。
+### [Attribute](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/159053bc7585980583ee76354e1a40448cb45d75)
 
-### [1.9で変わった部分への対応](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/adafd12e9495aa4b839ed40930c61fe5fa0c36a0)
+### [CauldronLevelChangeEvent](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/5ffd23921010df307d30533473ef3c7e85fc5ad6)
 
-エンティティ、アイテム、サウンドなどを1.9用に変更されたようです。
+### [PlayerFishEvent.State.BITE](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/e159720a91b50d01410eea84650e9546f93421e4)
 
-### 追加 [Inventory#getLocation()](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/4a2f5900611095e0c35fc838ae62606b23537cce)
+### [FurnaceRecipe experience](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/ce26a2e06af5a8c0645d93ccd73d893fc2ef3c48)
 
-インベントリがエンティティかブロックのものだった場合にLocationを返すメソッドが追加されました。
-仮想インベントリなどLocationが存在しないInventoryの場合は`null`を返します。
+### [Inventory#getLocation()](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/4a2f5900611095e0c35fc838ae62606b23537cce)
 
-### 追加 [PotionEffect#getColor()](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/2369bd410e3b2f8ccac90838ffb2eff4096746ec)
+### [PotionEffect#getColor()](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/2369bd410e3b2f8ccac90838ffb2eff4096746ec)
 
-ポーションの色を取得出来るようになりました。
-
-### ドキュメント [注意書きの追加(`PotionEffectType.values()`)](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/525cb1674b1b26c43bdfd617070d3740fc0703e4)
-
-順番や`null`が含まれる可能性に関する注意書きのようです。
-
-### 追加 [PlayerFishEvent.State.BITE](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/e159720a91b50d01410eea84650e9546f93421e4)
-
-魚が引っ掛かったタイミングでPlayerFishEventが発生するようです。
-
-### 修正 [ツリー](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/29375a116ff7adaaf0f5bf4c9994f7aede75a0fe)
-
-[バグ](https://hub.spigotmc.org/jira/browse/SPIGOT-1389)の修正
-
-### 追加 [かまどのレシピに経験値](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/ce26a2e06af5a8c0645d93ccd73d893fc2ef3c48)
-
-getterとsetterが追加されたようです。
-
-### 追加 [CauldronLevelChangeEvent](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/5ffd23921010df307d30533473ef3c7e85fc5ad6)
-
-大釜のレベル(水量?)が変化した場合に発生するイベントの追加(?)
+### [PrepareAnvilEvent](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/56ac4a8769e1bed2b86cf28bc9e653740ef01251)
