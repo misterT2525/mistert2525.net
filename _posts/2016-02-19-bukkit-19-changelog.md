@@ -7,11 +7,10 @@ tags: [bukkit, java, spigot]
 ---
 {% include JB/setup %}
 
-BukkitのMinecraft 1.9版の開発がスタートしました。
+Bukkit 1.9がリリースされました。
 1.8からの変更点をまとめていきます。
 間違っている箇所など有りましたらツイッターで教えてください。
 
-[現在の最新版(1.8.8)との差分](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/compare/diff?targetBranch=refs%2Fheads%2Fmaster&sourceBranch=refs%2Fheads%2F1.9&targetRepoId=11) |
 [Minecraft1.9の変更点](http://minecraft-ja.gamepedia.com/1.9)
 
 ## 削除されたAPI
@@ -80,6 +79,10 @@ Bukkit.createBossBar("Title", BarColor.PINK, BarStyle.SEGMENTED_12, BarFlag.PLAY
 ### [Glowing](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/298c819f609cb68e9b4a8df56209446b3512c771)
 
 Minecraft1.9で`Glowing`というEntityの状態が追加されたため、追加されます。
+
+### [DamageCause.FLY_INTO_WALL](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/c633591e52e0ecd4f4d146ebd8231659b4b87479)
+
+### [Merchant](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/972b9fea86022c4136504fbd3ac9c00070b96baa)
 
 ### [Particle](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/cc17cf177617cb57951a405725cba59b5244acec)
 
