@@ -7,7 +7,7 @@ tags: [bukkit, java, spigot]
 ---
 {% include JB/setup %}
 
-Bukkit 1.9がリリースされました。
+[Bukkit 1.9がリリース](https://www.spigotmc.org/threads/127186/)されました。
 1.8からの変更点をまとめていきます。
 間違っている箇所など有りましたらツイッターで教えてください。
 
@@ -99,3 +99,23 @@ Minecraft1.9で`Glowing`というEntityの状態が追加されたため、追�
 ### [PotionEffect#getColor()](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/2369bd410e3b2f8ccac90838ffb2eff4096746ec)
 
 ### [PrepareAnvilEvent](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/commits/56ac4a8769e1bed2b86cf28bc9e653740ef01251)
+
+## その他
+
+### 古いプラグインとの互換性に関して
+
+1.6又はそれ以前と1.7で変更されたメソッドのremappingが削除されました。
+これらのメソッド(`getOnlinePlayers()`など)を使っていた1.6以前のプラグインに影響があります。
+そして、そのプラグインはアップデートする必要がありますが、
+サポートがされていないが、ソースコードが無い場合などは、
+以下のコマンドをBuildToolsのディレクトリで実行することで対応させることが出来ます。
+(`MyPlugin.jar`をそのプラグインのパスに、
+  `MyPlugin-fixed.jar`を対応されたバージョンの保存先パスにしてください。)
+
+```
+java -jar BuildData/bin/SpecialSource-2.jar map -m CraftBukkit/deprecation-mappings.csrg -i MyPlugin.jar -o MyPlugin-fixed.jar
+```
+
+### 一時的に削除されたAPI
+
+`BookEditEvent`が、デコンパイラーの問題により一時的に削除されているようです。
