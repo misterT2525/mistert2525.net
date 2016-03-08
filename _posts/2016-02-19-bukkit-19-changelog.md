@@ -7,6 +7,11 @@ tags: [bukkit, java, spigot]
 ---
 {% include JB/setup %}
 
+## 注意事項
+
+> この記事はもう更新されていません。
+> Bukkit1.9にて使えなくなったプラグインなどに関する情報は、[こちらの記事](/bukkit/2016/03/07/bukkit-19-break-plugins)に書きました。
+
 [Bukkit 1.9がリリース](https://www.spigotmc.org/threads/127186/)されました。
 1.8からの変更点をまとめていきます。
 間違っている箇所など有りましたらツイッターで教えてください。
