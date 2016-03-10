@@ -84,7 +84,7 @@ BungeeCordから実際のサーバーに送信している。
 実際のサーバーとBungeeCordを同じホストで動かすのならば、
 `server.properties`内の`server-ip`を`127.0.0.1`にすることで対策出来るだろう。
 別のホストで動かすのならば、`iptables`等のファイヤーウォールを使って対策するべきだろう。
-詳しくは[SpigotMCのページ][bungeecord]などに書いてあるだろう。
+詳しくは[SpigotMCのページ][firewall-guide]を見るといいだろう。
 
 対策をしなかったら、何が起きるのか。
 簡単に説明すると、悪意のある人が他人に成りすましてログインすることが出来てしまう。
@@ -103,3 +103,4 @@ BungeeCordから実際のサーバーに送信している。
 [minecraft]: https://minecraft.net/
 [spigot-patch]: https://hub.spigotmc.org/stash/projects/SPIGOT/repos/spigot/browse/CraftBukkit-Patches/0048-BungeeCord-Support.patch
 [vanillacord]: https://www.spigotmc.org/resources/vanillacord.952/
+[firewall-guide]: https://www.spigotmc.org/wiki/firewall-guide/
